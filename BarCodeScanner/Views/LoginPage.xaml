@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarCodeScanner.Views.LoginPage"
+             Title="LoginPage"
+             BackgroundColor="#ffffff">
+    <ContentPage.Content>
+        <Grid VerticalOptions="Center"
+              HorizontalOptions="Center">
+            <StackLayout Padding="20"
+                         Spacing="25"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Center">
+                <Label Text="Welcome"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="#333" />
+                <Label Text="Sign in to continue"
+                       FontSize="18"
+                       HorizontalOptions="Center"
+                       TextColor="#666" />
+                <Button Text="Sign in with Google"
+                        Command="{Binding SignInGoogleCommand}"
+                        TextColor="White"
+                        BackgroundColor="#4285F4"
+                        FontSize="18"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="10, 5"
+                        Margin="0,20,0,0" /> 
+                <Button Text="Sign in with Microsoft"
+                        Command="{Binding SignInMicrosoftCommand}"
+                        TextColor="White"
+                        BackgroundColor="#4285F4"
+                        FontSize="18"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="10, 5"
+                        Margin="0,20,0,0" />
+                <Button Text="Continue without registration"
+                        Command="{Binding SkipLoginCommand}"
+                        TextColor="White"
+                        BackgroundColor="DarkGray"
+                        FontSize="18"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="10, 5"
+                        Margin="0,20,0,0" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

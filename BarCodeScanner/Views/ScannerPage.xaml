@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BarCodeScanner.ViewModels"
+             x:Class="BarCodeScanner.Views.ScannerPage"
+             Title="{Binding Profile.Name}">
+    <StackLayout Padding="20">
+        <Button Text="Scan Barcode"
+                Command="{Binding BarcodeScanner.ScanBarcodeCommand}" />
+        <Label Text="Scanned Codes:"
+               FontSize="Medium"
+               Margin="0,20" />
+        <ScrollView VerticalOptions="StartAndExpand">
+            <StackLayout BindableLayout.ItemsSource="{Binding BarcodeScanner.ScannedCodes}"
+                         VerticalOptions="CenterAndExpand"
+                         Spacing="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10"
+                                StrokeShape="RoundRectangle 10">
+                            <Grid ColumnDefinitions="3*, auto, auto" ColumnSpacing="7">
+                                <Frame Grid.Column="0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProfileBarcodeScannerCompositeViewModel}}, Path=BarcodeScanner.OpenUrlCommand}" CommandParameter="{Binding Value}"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <Label Text="{Binding Value}" FontSize="Body"/>
+                                        <Label Text="{Binding Format}" FontSize="Caption"/>
+                                    </StackLayout>
+                                </Frame>
+                                <ImageButton Grid.Column="1"
+                                             VerticalOptions="Center"
+                                             WidthRequest="30"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProfileBarcodeScannerCompositeViewModel}}, Path=BarcodeScanner.CopyCommand}"
+                                             CommandParameter="{Binding Value}"
+                                             Source="copy.png" />
+                                <ImageButton Grid.Column="2"
+                                             VerticalOptions="Center"
+                                             WidthRequest="20"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProfileBarcodeScannerCompositeViewModel}}, Path=BarcodeScanner.RemoveCommand}"
+                                             CommandParameter="{Binding .}"
+                                             Source="cross.png" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
